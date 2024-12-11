@@ -5,7 +5,6 @@
 ※ Change to the IP address (v4) specified by your WSL2
 
 #### Check python's parent process ID at startup
-
 ```markdown
 import os
 
@@ -15,6 +14,34 @@ pid = os.getppid()
 # Need to check at startup
 print(f"Parent Process ID: {pid}")
 ```
+### Add this to the top of your python file to start debugging
+```python
+import debugpy
+import os
+
+from typing import Optional```
+def debug_wait_for_attach(listen_to):
+    scoop = os.path.expanduser('~/scoop/apps/python/current/python.exe')
+    pyenv: Optional[str] = os.path.expanduser('/.pyenv/shims/python')
+    ay: Optional[str] = os.path.expanduser('/.anyenv/envs/pyenv/shims/python')
+    
+    if os.path.exists(os.path.expanduser(scoop)):
+        # use scoop
+        debugpy.configure(python=str(scoop))
+        debugpy.listen(listen_to)
+        debugpy.wait_for_client()
+    elif os.path.exists(pyenv):
+        # ~/.pyenv
+        debugpy.configure(python=str(pyenv))
+        debugpy.listen(listen_to)
+        debugpy.wait_for_client()
+    elif os.path.exists(ay):
+        # ~/.anyenv
+        debugpy.configure(python=str(ay))
+        debugpy.listen(listen_to)
+        debugpy.wait_for_client()
+```
+※ scoop/.pyenv/anyenv, add other paths yourself
 
 > python -m debugpy --wait-for-client --listen 5678 facematch.py ${@:2}
 
