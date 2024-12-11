@@ -1,0 +1,56 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		}
+	],
+	"debugger_configurations":
+	[
+        {
+            "name": "Python Debugger: Attach remote debug.",
+            "type": "python",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "justMyCode" : false,
+        },
+        {
+            "name": "Python Debugger: WSL2 Attach remote debug.",
+            "type": "python",
+            "request": "attach",
+            "connect": {
+                // My WSL2 IP Adress
+                "host": "",
+                "port": 5678
+            },
+            "justMyCode" : false,
+        },
+        {
+            "name" : "Python Debugger: Attach using process Id",
+            "type" : "python",
+            "request" : "attach",
+            "selector": "source.python | text.html.python",
+            "debugServer": 5678,
+            // At startup, check.
+            "processId": "",
+            "pathMappings": [{
+                "localRoot": "${workspaceFolder}",
+                "remoteRoot": "."
+            }],
+            "justMyCode" : false,
+        },
+        {
+            "name": "Python Debugger: Current File",
+            "type": "sublime",
+            "platform": "windows",
+            "request": "launch",
+            "selector": "source.python | text.html.python",
+            "program": "\\${file}",
+            "console": "integratedTerminal",
+            "justMyCode" : false,
+        },
+	],
+}
