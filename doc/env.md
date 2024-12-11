@@ -4,6 +4,18 @@
 
 ※ Change to the IP address (v4) specified by your WSL2
 
+#### Check python's parent process ID at startup
+
+```markdown
+import os
+
+# Get parent process of python
+pid = os.getppid()
+
+# Need to check at startup
+print(f"Parent Process ID: {pid}")
+```
+
 > python -m debugpy --wait-for-client --listen 5678 facematch.py ${@:2}
 
 ※ Windows environment
@@ -18,7 +30,7 @@
 
 >  git clone https://github.com/takkii/PythonSettings.git
 
-#### ビルドシステム追加
+#### new Build System / ビルドシステム追加
 
 > Python3.sublime-build
 
@@ -116,4 +128,3 @@
 	],
 }
 ```
-
