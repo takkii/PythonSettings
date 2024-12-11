@@ -12,3 +12,108 @@
 
 ※ WSL2 environment
 
+>  C:\Users\user\AppData\Roaming\Sublime Text\Packages\SublimeDebugger
+
+#### Preference(基本設定) / Packagesフォルダ
+
+>  git clone https://github.com/takkii/PythonSettings.git
+
+#### ビルドシステム追加
+
+> Python3.sublime-build
+
+```json
+    "debugger_tasks" : [
+    {
+        "name" : "Python Debugger run task",
+        "type" : "python",
+        "settings": {
+            "enabled": true,
+            "command":
+            [
+                "C:/Users/user/scoop/apps/python/current/python.exe", "$file"
+            ],
+            "selector": "source.python | text.html.python",
+        },
+    	"platform": "windows",
+    	"file_regex": "^\\s*File \"(...*?)\", line ([0-9]*)",
+    	"PYTHONIOENCODING": "utf-8",
+    },
+    {
+        "name": "Python Debug Symbols",
+        "type" : "python",
+        "settings": {
+            "enabled": true,
+            "command":
+            [
+                "C:/Users/user/scoop/apps/python/current/python.exe", "-D", "$file"
+            ],
+            "selector": "source.python | text.html.python",
+        },
+        "platform": "windows",
+        "file_regex": "^\\s*File \"(...*?)\", line ([0-9]*)",
+        "PYTHONIOENCODING": "utf-8",
+    }
+```
+
+#### project_name.sublime-project
+
+```json
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		}
+	],
+	"debugger_configurations":
+	[
+        {
+            "name": "Python Debugger: Attach remote debug.",
+            "type": "python",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "justMyCode" : false,
+        },
+        {
+            "name": "Python Debugger: WSL2 Attach remote debug.",
+            "type": "python",
+            "request": "attach",
+            "connect": {
+                // My WSL2 IP Adress
+                "host": "",
+                "port": 5678
+            },
+            "justMyCode" : false,
+        },
+        {
+            "name" : "Python Debugger: Attach using process Id",
+            "type" : "python",
+            "request" : "attach",
+            "selector": "source.python | text.html.python",
+            "debugServer": 5678,
+            // At startup, check.
+            "processId": "",
+            "pathMappings": [{
+                "localRoot": "${workspaceFolder}",
+                "remoteRoot": "."
+            }],
+            "justMyCode" : false,
+        },
+        {
+            "name": "Python Debugger: Current File",
+            "type": "sublime",
+            "platform": "windows",
+            "request": "launch",
+            "selector": "source.python | text.html.python",
+            "program": "\\${file}",
+            "console": "integratedTerminal",
+            "justMyCode" : false,
+        },
+	],
+}
+```
+
