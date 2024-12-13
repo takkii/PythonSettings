@@ -1,10 +1,13 @@
 ### Windows11/WSL2, I can launch Sublime Debugger.
 
+![SublimeDebugger\_settings\](https://github.com/takkii/PythonSettings/blob/main/image/settings.gif)
+
 > bash.exe -c "ip r |tail -n1|cut -d ' ' -f9"
 
 ※ Change to the IP address (v4) specified by your WSL2
 
 #### Check python's parent process ID at startup
+
 ```markdown
 import os
 
