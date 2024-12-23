@@ -25,8 +25,8 @@ import os
 from typing import Optional```
 def debug_wait_for_attach(listen_to):
     scoop = os.path.expanduser('~/scoop/apps/python/current/python.exe')
-    pyenv: Optional[str] = os.path.expanduser('/.pyenv/shims/python')
-    ay: Optional[str] = os.path.expanduser('/.anyenv/envs/pyenv/shims/python')
+    pyenv: Optional[str] = os.path.expanduser('~/.pyenv/shims/python')
+    ay: Optional[str] = os.path.expanduser('~/.anyenv/envs/pyenv/shims/python')
     
     if os.path.exists(os.path.expanduser(scoop)):
         # use scoop
