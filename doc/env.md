@@ -155,6 +155,6 @@ def debug_wait_for_attach(listen_to):
             "console": "integratedTerminal",
             "justMyCode" : false,
         },
-	],
+	]
 }
 ```
