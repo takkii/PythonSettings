@@ -1,3 +1,4 @@
+debugpy
 numpy
 pandas
 scikit-learn
